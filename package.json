@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "minify": "terser Mozi.js -o Mozi.min.js && csso Mozi.css -o Mozi.min.css"
+    },
+    "dependencies": {
+        "csso-cli": "^4.0.2",
+        "terser": "^5.39.0"
+    }
+}
