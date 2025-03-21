@@ -1,6 +1,3 @@
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
 Mozi.elements = [];
 
 function Mozi(options = {}) {
@@ -12,7 +9,7 @@ function Mozi(options = {}) {
         },
         options
     );
-    this.template = $(`#${this.opt.templateId}`);
+    this.template = document.querySelector(`#${this.opt.templateId}`);
     if (!this.template) {
         console.error(`#${this.opt.templateId} does not exists!`);
         return;
