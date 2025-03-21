@@ -17,7 +17,7 @@
     visibility: visible;
 }
 
-.mozi__backdrop--show .mozi__container {
+.mozi--show .mozi__container {
     transform: scale(1);
 }
 
