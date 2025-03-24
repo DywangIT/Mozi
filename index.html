@@ -110,14 +110,14 @@
                 a CDN link. This makes it easy to intergrate into your project
                 and customize as needed
             </p>
-            <p>Inlude the Mozi JavaScript file in your project:</p>
+            <p>Include the Mozi JavaScript file in your project:</p>
             <pre
                 class="html"
-            ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/sondnpt00343/popzy@v1.0.1/popzy.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+            ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/DywangIT/mozi@v1.0.0/mozi.min.js&quot;&gt;&lt;/script&gt;</code></pre>
             <p>Optionally, include the Mozi CSS file for default styling:</p>
             <pre
                 class="html"
-            ><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/sondnpt00343/popzy@v1.0.1/popzy.min.css&quot;&gt;</code></pre>
+            ><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/DywangIT/mozi@v1.0.0/mozi.min.css&quot;&gt;</code></pre>
             <p>
                 You can explore the list of CSS classes used by Mozi in the
                 <a href="#styling">Styling</a> section to easily customize them
@@ -135,30 +135,24 @@
             <!--  -->
             <h2 class="title" data-bullet="3" id="usage">Usage</h2>
             <pre class="javascript"><code>// Initialize a new modal
-const modal = new Popzy({
+const modal = new Mozi({
     content: '&lt;h1&gt;This is content&lt;/h1&gt;',
     // templateId: 'my-modal-template',
     footer: true,
     destroyOnClose: false,
     closeMethods: ['overlay', 'button', 'escape'],
-    cssClass: ['custom-class-1', 'custom-class-2'],
-    onOpen: function() {
-        console.log('Modal opened');
-    },
-    onClose: function() {
-        console.log('Modal closed');
-    },
+    cssClass: ['custom-class-1', 'custom-class-2']
 });
                 
 // Set modal content
 modal.setContent('&lt;h1&gt;This is new content&lt;/h1&gt;');
 
 // Add footer buttons
-modal.addFooterBtn('Cancel', 'btn btn--default', function(e) {
+modal.addFooterButton('Cancel', 'btn btn--default', function(e) {
     modal.close();
 });
 
-modal.addFooterBtn('Confirm', 'btn btn--primary', function(e) {
+modal.addFooterButton('Confirm', 'btn btn--primary', function(e) {
     modal.close();
 });
 
@@ -192,9 +186,9 @@ modal.close();</code></pre>
             <table class="methods">
                 <thead>
                     <tr>
-                        <th>Option</th>
+                        <th>Options</th>
                         <th>Type</th>
-                        <th>Description</th>
+                        <th style="width: 50%">Description</th>
                     </tr>
                 </thead>
                 <tr>
@@ -280,52 +274,52 @@ modal.close();</code></pre>
                         <th style="width: 70%">Description/Role</th>
                     </tr>
                 </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.mozi__backdrop</code></td>
+                        <td>
+                            Styles the backdrop overlay for the modal. Handles
+                            positioning, centering the modal, and applying a
+                            semi-transparent background.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.mozi--show</code></td>
+                        <td>
+                            Applied when the modal is visible. Controls the
+                            visibility and opacity of the backdrop
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.mozi__container</code></td>
+                        <td>
+                            Styles the close button inside the modal, including its
+                            size, position, and hover effects.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.mozi__content</code></td>
+                        <td>
+                            Handles the modal's main content area, including
+                            scrollable behavior with a maximum height.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.mozi__footer</code></td>
+                        <td>
+                            Styles the modal footer, aligning buttons to the right
+                            and adding spacing between them.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.mozi--no-scroll</code></td>
+                        <td>
+                            Disables scrolling on the target element specified by
+                            <code>scrollLockTarget</code> when the modal is open.
+                        </td>
+                    </tr>
+                </tbody>
             </table>
-            <tbody>
-                <tr>
-                    <td><code>.mozi</code></td>
-                    <td>
-                        Styles the backdrop overlay for the modal. Handles
-                        positioning, centering the modal, and applying a
-                        semi-transparent background.
-                    </td>
-                </tr>
-                <tr>
-                    <td><code>.mozi--show</code></td>
-                    <td>
-                        Applied when the modal is visible. Controls the
-                        visibility and opacity of the backdrop
-                    </td>
-                </tr>
-                <tr>
-                    <td><code>.mozi__container</code></td>
-                    <td>
-                        Styles the close button inside the modal, including its
-                        size, position, and hover effects.
-                    </td>
-                </tr>
-                <tr>
-                    <td><code>.mozi__content</code></td>
-                    <td>
-                        Handles the modal's main content area, including
-                        scrollable behavior with a maximum height.
-                    </td>
-                </tr>
-                <tr>
-                    <td><code>.mozi__footer</code></td>
-                    <td>
-                        Styles the modal footer, aligning buttons to the right
-                        and adding spacing between them.
-                    </td>
-                </tr>
-                <tr>
-                    <td><code>.mozi--no-scroll</code></td>
-                    <td>
-                        Disables scrolling on the target element specified by
-                        <code>scrollLockTarget</code> when the modal is open.
-                    </td>
-                </tr>
-            </tbody>
             <p>
                 For more details, you can view the full CSS file directly here:
                 <a
@@ -365,11 +359,11 @@ modal.close();</code></pre>
                     <td>Updates the modal content.</td>
                 </tr>
                 <tr>
-                    <td>setFooterContent(content)</td>
+                    <td>setFooter(content)</td>
                     <td>Updates the footer content</td>
                 </tr>
                 <tr>
-                    <td>addFooterBtn(label, cssClass, callback)</td>
+                    <td>addFooterButton(label, cssClass, callback)</td>
                     <td>
                         Completely removes the modal elements from the DOM and
                         unbinds all associated events.
