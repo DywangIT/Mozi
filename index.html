@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Vanilla JavaScript Modal Library</title>
+        <link
+            rel="stylesheet"
+            href="./assets/highlight/styles.css"
+            media="all"
+        />
+        <link rel="stylesheet" href="./src/mozi.css" />
+        <link rel="stylesheet" href="./assets/styles.css" />
+        <link
+            rel="shortcut icon"
+            href="./assets/favicon.ico"
+            type="image/x-icon"
+        />
+    </head>
+    <body>
+        <!-- HEADER -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Mozi.js</h1>
+                <div class="header__tagline">
+                    A lighweight and simple modal library built with pure
+                    javaScript
+                </div>
+                <a
+                    href="https://github.com/DywangIT/Mozi"
+                    target="_blank"
+                    class="header__github"
+                >
+                    <img src="./assets/github.svg" alt="view on github" />
+                </a>
+            </div>
+        </header>
+        <!-- /HEADER -->
+
+        <!-- CONTAINER -->
+        <div class="container content">
+            <!--  -->
+            <h2 id="try-it-out" class="title" data-bullet="1">Try It Out</h2>
+            <p>
+                Mozi is a lighweight <strong>modal library</strong> built with
+                JavaScript. (<a href="https://github.com/DywangIT/Mozi"
+                    >Source code available on Github</a
+                >)
+            </p>
+            <ul>
+                <li>No dependencies</li>
+                <li>Fully customizable with CSS</li>
+                <li>Supports CSS transitions</li>
+                <li>Simple and intuitive API</li>
+                <li>No extra files needed</li>
+                <li>optimized for user experience</li>
+            </ul>
+            <p>Here are some examples of how to use Mozi:</p>
+            <button class="btn btn--primary btn-demo js-mozi-modal-1">
+                Basic Modal
+            </button>
+            <button class="btn btn--secondary btn-demo js-mozi-modal-2">
+                Modal with Buttons
+            </button>
+            <button class="btn btn--secondary btn-demo js-mozi-modal-3">
+                Large Content Modal
+            </button>
+            <button class="btn btn--secondary btn-demo js-mozi-modal-4">
+                Footer-Only Close Modal
+            </button>
+            <button class="btn btn--secondary btn-demo js-mozi-modal-5">
+                Persistant Modal (Stays in DOM)
+            </button>
+            <button class="btn btn--secondary btn-demo js-mozi-modal-6">
+                Multiple Modals
+            </button>
+            <button class="btn btn--secondary btn-demo js-mozi-modal-7">
+                Youtube Embed Modal
+            </button>
+            <!--  -->
+            <h2 class="title" data-bullet="2" id="installation">
+                Installation
+            </h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th class="w60">Steps</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Direct Download</td>
+                    <td>
+                        <a
+                            href="https://github.com/DywangIT/Mozi/archive/master.zip"
+                            title="Download Mozi"
+                        >
+                            Download ZIP
+                        </a>
+                        <p>
+                            Simply extract the ZIP file and use the
+                            <code>mozi.min.js</code> and
+                            <code>mozi.min.css</code> files in your project.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                Mozi provides a small CSS files that you can include direcly via
+                a CDN link. This makes it easy to intergrate into your project
+                and customize as needed
+            </p>
+            <p>Inlude the Mozi JavaScript file in your project:</p>
+            <pre
+                class="html"
+            ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/sondnpt00343/popzy@v1.0.1/popzy.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+            <p>Optionally, include the Mozi CSS file for default styling:</p>
+            <pre
+                class="html"
+            ><code>&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/sondnpt00343/popzy@v1.0.1/popzy.min.css&quot;&gt;</code></pre>
+            <p>
+                You can explore the list of CSS classes used by Mozi in the
+                <a href="#styling">Styling</a> section to easily customize them
+                as needed
+            </p>
+            <blockquote>
+                You can use the
+                <a
+                    href="https://github.com/DywangIT/Mozi/releases"
+                    target="_blank"
+                    >released</a
+                >
+                versions of Mozi available here.
+            </blockquote>
+            <!--  -->
+            <h2 class="title" data-bullet="3" id="usage">Usage</h2>
+            <pre class="javascript"><code>// Initialize a new modal
+const modal = new Popzy({
+    content: '&lt;h1&gt;This is content&lt;/h1&gt;',
+    // templateId: 'my-modal-template',
+    footer: true,
+    destroyOnClose: false,
+    closeMethods: ['overlay', 'button', 'escape'],
+    cssClass: ['custom-class-1', 'custom-class-2'],
+    onOpen: function() {
+        console.log('Modal opened');
+    },
+    onClose: function() {
+        console.log('Modal closed');
+    },
+});
+                
+// Set modal content
+modal.setContent('&lt;h1&gt;This is new content&lt;/h1&gt;');
+
+// Add footer buttons
+modal.addFooterBtn('Cancel', 'btn btn--default', function(e) {
+    modal.close();
+});
+
+modal.addFooterBtn('Confirm', 'btn btn--primary', function(e) {
+    modal.close();
+});
+
+// Open the modal
+modal.open();
+
+// Close the modal
+modal.close();</code></pre>
+            <p>
+                If you use <code>templateID</code>, ensure that a
+                <code>&lt;template&gt;</code> element with the corresponding
+                <code>id</code> exists in your HTML. Below is an example:
+            </p>
+            <pre class="html">
+<code>&lt;template id="my-modal-template"&gt;
+    &lt;div&gt;
+        &lt;h1&gt;This is modal content&lt;/h1&gt;
+        &lt;p&gt;You can add any HTML here.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code></pre>
+
+            <p>
+                <strong>Note:</strong> When using <code>templateId</code>, do
+                not provide <code>content</code>. If both are specified,
+                <code>content</code> will take precedence, and
+                <code>templateId</code> will be ignored.
+            </p>
+            <!--  -->
+            <h2 class="title" data-bullet="4" id="options">Options</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Content, templateId</td>
+                    <td>string</td>
+                    <td>
+                        One of <code>content</code> or
+                        <code>templateId</code> is required to set the modal
+                        content. <code>Content</code> accepts an HTML string,
+                        while <code>templateId</code> specified the ID of a
+                        template element. If both are provided,
+                        <code>content</code> will take precedence.
+                    </td>
+                </tr>
+                <tr>
+                    <td>cssClass</td>
+                    <td>array</td>
+                    <td>
+                        Custom CSS classes applied to the modal container
+                        (default: <code>[]</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>footer</td>
+                    <td>boolean</td>
+                    <td>
+                        Shows a footer in the modal (default:
+                        <code>false</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>destroyOnClose</td>
+                    <td>boolean</td>
+                    <td>
+                        Decides whether the modal is removed from the DOM upon
+                        closing (default: <code>true</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>closeMethods</td>
+                    <td>array</td>
+                    <td>
+                        Defines methods to close the modal (default:
+                        <code>['overlay', 'x', 'escape']</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>enableScrollLock</td>
+                    <td>boolean</td>
+                    <td>
+                        A callback that returns the element to apply scroll
+                        locking on. By default, it locks scroling on
+                        <code>document.body</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td>onOpen</td>
+                    <td>function</td>
+                    <td>
+                        Callback function executed when the modal opens (after
+                        transition ends) (default: <code>undefined</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>onClose</td>
+                    <td>function</td>
+                    <td>
+                        Callback funtion executed when the modal closes
+                        (default: <code>undefined</code>)
+                    </td>
+                </tr>
+            </table>
+            <!--  -->
+            <h2 class="title" data-bullet="5" id="styling">Styling</h2>
+            <p>
+                Mozi styles are defined in CSS. You can fully customize it to
+                meet your design requirements.
+            </p>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th style="width: 70%">Description/Role</th>
+                    </tr>
+                </thead>
+            </table>
+            <tbody>
+                <tr>
+                    <td><code>.mozi</code></td>
+                    <td>
+                        Styles the backdrop overlay for the modal. Handles
+                        positioning, centering the modal, and applying a
+                        semi-transparent background.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>.mozi--show</code></td>
+                    <td>
+                        Applied when the modal is visible. Controls the
+                        visibility and opacity of the backdrop
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>.mozi__container</code></td>
+                    <td>
+                        Styles the close button inside the modal, including its
+                        size, position, and hover effects.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>.mozi__content</code></td>
+                    <td>
+                        Handles the modal's main content area, including
+                        scrollable behavior with a maximum height.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>.mozi__footer</code></td>
+                    <td>
+                        Styles the modal footer, aligning buttons to the right
+                        and adding spacing between them.
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>.mozi--no-scroll</code></td>
+                    <td>
+                        Disables scrolling on the target element specified by
+                        <code>scrollLockTarget</code> when the modal is open.
+                    </td>
+                </tr>
+            </tbody>
+            <p>
+                For more details, you can view the full CSS file directly here:
+                <a
+                    href="https://github.com/DywangIT/Mozi/blob/main/mozi.css"
+                    target="_blank"
+                    >mozi.css</a
+                >
+            </p>
+            <!-- API section -->
+            <h2 class="title" data-bullet="6" id="api">API</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th class="w60">Description</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>open()</td>
+                    <td>
+                        Opens the modal and triggers the
+                        <code>onOpen</code> callback.
+                    </td>
+                </tr>
+                <tr>
+                    <td>close()</td>
+                    <td>
+                        Closes the modal and triggers the
+                        <code>onClose</code> callback. If
+                        <code>close(true)</code> is called, it behaves the same
+                        as <code>destroy()</code>, removing the modal from the
+                        DOM.
+                    </td>
+                </tr>
+                <tr>
+                    <td>setContent(content)</td>
+                    <td>Updates the modal content.</td>
+                </tr>
+                <tr>
+                    <td>setFooterContent(content)</td>
+                    <td>Updates the footer content</td>
+                </tr>
+                <tr>
+                    <td>addFooterBtn(label, cssClass, callback)</td>
+                    <td>
+                        Completely removes the modal elements from the DOM and
+                        unbinds all associated events.
+                    </td>
+                </tr>
+            </table>
+
+            <footer class="footer">
+                <p>
+                    This is a small project included in the "Practice with DOM"
+                    section of the JavaScript Pro course.
+                </p>
+                <p>
+                    Learn more at
+                    <a
+                        href="https://fullstack.edu.vn/landing/javascript"
+                        target="_blank"
+                        >JavaScript Pro</a
+                    >.
+                </p>
+            </footer>
+        </div>
+        <!-- /CONTAINER -->
+        <script src="./assets/highlight/highlight.js"></script>
+        <script src="./src/mozi.js"></script>
+        <script>
+            // Highlight code
+            hljs.initHighlightingOnLoad();
+
+            // Basic Modal
+            const modal1Btn = document.querySelector(".js-mozi-modal-1");
+            const modal1 = new Mozi({
+                content: `
+                    <h1>Basic Modal</h1>
+                    <p>This is a simple modal. You can customize its content as per your requirements.</p>
+                `
+            });
+            modal1Btn.onclick = () => modal1.open();
+            // Modal with Buttons
+            const modal2Btn = document.querySelector(".js-mozi-modal-2");
+            const modal2 = new Mozi({
+                content: `
+                    <h1>Modal with Buttons</h1>
+                    <p>This modal includes functional buttons for actions such as canceling or confirming.</p>
+                `,
+                footer: true
+            });
+            modal2.addFooterButton("Cancel", "modal-btn", () => modal2.close());
+            modal2.addFooterButton("Confirm", "modal-btn primary", () => {
+                console.log("Action confirmed!");
+                modal2.close();
+            });
+            modal2Btn.onclick = () => modal2.open();
+            // Large Content Modal
+            const modal3Btn = document.querySelector(".js-mozi-modal-3");
+            const modal3 = new Mozi({
+                content: `
+                    <h1>Large Content Modal</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora cumque enim neque, nam molestiae libero ullam voluptatum accusantium totam qui explicabo eveniet eum deserunt omnis officiis. Nobis velit officia veniam dolore tempore reiciendis et tenetur maxime, quaerat, perferendis, atque nulla repellendus debitis vitae similique? Rem quae magni aliquid debitis quis veritatis consequatur optio. Iure, cupiditate. Porro temporibus cum assumenda culpa repudiandae nulla aut exercitationem nesciunt doloremque. Hic, autem? Voluptatem delectus incidunt odit optio totam quaerat eaque minus a! Numquam quisquam sint architecto accusamus sequi? Commodi eum quia adipisci accusamus iste veniam odit earum ab voluptas, at assumenda culpa! Incidunt, est?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora cumque enim neque, nam molestiae libero ullam voluptatum accusantium totam qui explicabo eveniet eum deserunt omnis officiis. Nobis velit officia veniam dolore tempore reiciendis et tenetur maxime, quaerat, perferendis, atque nulla repellendus debitis vitae similique? Rem quae magni aliquid debitis quis veritatis consequatur optio. Iure, cupiditate. Porro temporibus cum assumenda culpa repudiandae nulla aut exercitationem nesciunt doloremque. Hic, autem? Voluptatem delectus incidunt odit optio totam quaerat eaque minus a! Numquam quisquam sint architecto accusamus sequi? Commodi eum quia adipisci accusamus iste veniam odit earum ab voluptas, at assumenda culpa! Incidunt, est?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora cumque enim neque, nam molestiae libero ullam voluptatum accusantium totam qui explicabo eveniet eum deserunt omnis officiis. Nobis velit officia veniam dolore tempore reiciendis et tenetur maxime, quaerat, perferendis, atque nulla repellendus debitis vitae similique? Rem quae magni aliquid debitis quis veritatis consequatur optio. Iure, cupiditate. Porro temporibus cum assumenda culpa repudiandae nulla aut exercitationem nesciunt doloremque. Hic, autem? Voluptatem delectus incidunt odit optio totam quaerat eaque minus a! Numquam quisquam sint architecto accusamus sequi? Commodi eum quia adipisci accusamus iste veniam odit earum ab voluptas, at assumenda culpa! Incidunt, est?</p>
+                `
+            });
+            modal3Btn.onclick = () => modal3.open();
+            // Footer-Only Close Modal
+            const modal4Btn = document.querySelector(".js-mozi-modal-4");
+            const modal4 = new Mozi({
+                content: `
+                    <h1>Footer-Only Close Modal</h1>
+                    <p>This modal can only be closed via the button in the footer for a controlled experience.</p>
+                `
+            });
+            modal4.addFooterButton("Close", "modal-btn", () => modal4.close());
+            modal4Btn.onclick = () => modal4.open();
+            // Persistent Modal
+            const modal5Btn = document.querySelector(".js-mozi-modal-5");
+            const modal5 = new Mozi({
+                content: `
+                    <h1>Persistent Modal</h1>
+                    <p>This modal stays in the DOM even after being closed, allowing you to reopen it without losing any changes.</p>
+                    <p>You can write something in the input below, close the modal, and reopen it to see the content still intact.</p>
+                    <input type:"text" placeholder="Type something here..."
+                    class="modal-input" style="width: 100%; padding: 10px; margin-top: 10px;"/>
+                `,
+                destroyOnClose: false
+            });
+            modal5Btn.onclick = () => modal5.open();
+            // Multiple Modals
+            const modal6Btn = document.querySelector(".js-mozi-modal-6");
+            const modal6 = new Mozi({
+                content: `
+                    <h1>Multiple Modals</h1>
+                    <p>This modal demonstrates interaction between multiple modals. You can open another modal from here.</p>
+                    <button class="btn" onclick="modal1.open();">Open Basic Modal</button>
+                `
+            });
+            modal6Btn.onclick = () => modal6.open();
+            // Youtube Embeb Modal
+            const modal7Btn = document.querySelector(".js-mozi-modal-7");
+            const modal7 = new Mozi({
+                content: `<iframe width="560" height="315" src="https://www.youtube.com/embed/6R2US0MFv3U?si=jtEnmMQV89dt1h5S" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+            })
+            modal7Btn.onclick = () => modal7.open();
+        </script>
+    </body>
+</html>
