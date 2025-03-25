@@ -162,7 +162,7 @@ modal.open();
 // Close the modal
 modal.close();</code></pre>
             <p>
-                If you use <code>templateID</code>, ensure that a
+                If you use <code>templateId</code>, ensure that a
                 <code>&lt;template&gt;</code> element with the corresponding
                 <code>id</code> exists in your HTML. Below is an example:
             </p>
@@ -340,15 +340,13 @@ modal.close();</code></pre>
                 <tr>
                     <td>open()</td>
                     <td>
-                        Opens the modal and triggers the
-                        <code>onOpen</code> callback.
+                        Opens the modal.
                     </td>
                 </tr>
                 <tr>
                     <td>close()</td>
                     <td>
-                        Closes the modal and triggers the
-                        <code>onClose</code> callback. If
+                        Closes the modal. If
                         <code>close(true)</code> is called, it behaves the same
                         as <code>destroy()</code>, removing the modal from the
                         DOM.
@@ -360,7 +358,7 @@ modal.close();</code></pre>
                 </tr>
                 <tr>
                     <td>setFooter(content)</td>
-                    <td>Updates the footer content</td>
+                    <td>Updates the footer(content, buttons).</td>
                 </tr>
                 <tr>
                     <td>addFooterButton(label, cssClass, callback)</td>
