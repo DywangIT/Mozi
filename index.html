@@ -432,7 +432,8 @@ modal.close();</code></pre>
                 content: `
                     <h1>Footer-Only Close Modal</h1>
                     <p>This modal can only be closed via the button in the footer for a controlled experience.</p>
-                `
+                `,
+                footer: true
             });
             modal4.addFooterButton("Close", "modal-btn", () => modal4.close());
             modal4Btn.onclick = () => modal4.open();
